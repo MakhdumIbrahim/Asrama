@@ -59,6 +59,41 @@
                         @error('misi') <span class="text-rose-400 text-xs mt-2 block">{{ $message }}</span> @enderror
                     </div>
 
+                    <!-- Input Statistik Asrama -->
+                    <div class="mt-6 border-t border-slate-700 pt-6">
+                        <h3 class="text-lg font-bold text-white mb-4">Statistik Asrama (Untuk Halaman Depan)</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Jumlah Santri -->
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-1">Jumlah Santri</label>
+                                <input type="number" name="jumlah_santri" value="{{ old('jumlah_santri', $profil->jumlah_santri ?? 0) }}" 
+                                    class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-sky-500">
+                            </div>
+
+                            <!-- Jumlah Kamar -->
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-1">Jumlah Kamar</label>
+                                <input type="number" name="jumlah_kamar" value="{{ old('jumlah_kamar', $profil->jumlah_kamar ?? 0) }}" 
+                                    class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-sky-500">
+                            </div>
+
+                            <!-- Jumlah Pengurus -->
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-1">Jumlah Pengurus</label>
+                                <input type="number" name="jumlah_pengurus" value="{{ old('jumlah_pengurus', $profil->jumlah_pengurus ?? 0) }}" 
+                                    class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-sky-500">
+                            </div>
+
+                            <!-- Jumlah Kelas Belajar -->
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-1">Jumlah Kelas Belajar</label>
+                                <input type="number" name="jumlah_kelas" value="{{ old('jumlah_kelas', $profil->jumlah_kelas ?? 0) }}" 
+                                    class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-sky-500">
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="flex justify-end pt-4 border-t border-slate-800">
                         <button type="submit" class="bg-sky-600 hover:bg-sky-500 text-white font-bold px-10 py-4 rounded-2xl shadow-lg shadow-sky-900/20 transition-all duration-300 hover:scale-105 active:scale-95 text-sm">
                             Simpan Perubahan

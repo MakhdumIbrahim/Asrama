@@ -6,6 +6,8 @@ use App\Models\PengaturanAsrama;
 use App\Models\Pengurus;
 use App\Models\Berita;
 use App\Models\Prestasi;
+use App\Models\Galeri;
+use App\Models\Fasilitas; // 1. Impor Model Fasilitas
 
 class FrontController extends Controller
 {
@@ -14,15 +16,17 @@ class FrontController extends Controller
         $profil = PengaturanAsrama::first();
         $pengurus = Pengurus::all();
         $berita = Berita::latest()->take(3)->get();
-        $prestasi = \App\Models\Prestasi::all();
+        $prestasi = Prestasi::all();
+        $galeri = Galeri::latest()->get();
+        
+        $fasilitas = Fasilitas::all(); // 2. Ambil data Fasilitas
 
-        // Masukkan $prestasi ke dalam compact
-        return view('welcome', compact('profil', 'pengurus', 'berita', 'prestasi'));
+        // 3. Masukkan 'fasilitas' ke dalam compact
+        return view('welcome', compact('profil', 'pengurus', 'berita', 'prestasi', 'galeri', 'fasilitas'));
     }
 
     public function showBerita($id)
     {
-        // Mencari berita berdasarkan ID. Jika tidak ada, akan error 404 otomatis.
         $berita = Berita::findOrFail($id);
         $profil = PengaturanAsrama::first(); 
         

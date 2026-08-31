@@ -16,8 +16,15 @@
         <style>
             body { font-family: 'Inter', sans-serif; }
         </style>
+        @if (session('error'))
+    <div class="max-w-7xl mx-auto px-6 pt-4">
+        <div class="bg-rose-500/10 border border-rose-500/50 text-rose-400 px-4 py-3 rounded-lg">
+            {{ session('error') }}
+        </div>
+    </div>
+@endif
     </head>
-    <body class="antialiased bg-slate-950 text-slate-200">
+    <body class="antialiased bg-slate-950 text-slate-200 overflow-x-hidden">
         <div class="min-h-screen">
             @include('layouts.navigation')
 

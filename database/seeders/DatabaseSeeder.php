@@ -24,5 +24,7 @@ class DatabaseSeeder extends Seeder
             'visi' => 'Mencetak generasi santri yang bertafaqquh fiddin, berakhlakul karimah, dan adaptif terhadap kemajuan teknologi.',
             'misi' => 'Menyelenggarakan kajian kitab kuning secara terstruktur, menegakkan kedisiplinan ibadah, dan membekali santri dengan kecakapan hidup modern.'
         ]);
+
+        $this->call(UserSeeder::class);
     }
 }

@@ -20,10 +20,14 @@ class ProfilAsramaController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'nama_asrama' => 'required|string|max:255',
+            'nama_asrama'     => 'required|string|max:255',
             'sejarah_singkat' => 'required|string',
-            'visi' => 'nullable|string',
-            'misi' => 'nullable|string',
+            'visi'            => 'nullable|string',
+            'misi'            => 'nullable|string',
+            'jumlah_santri'   => 'nullable|integer',
+            'jumlah_kamar'    => 'nullable|integer',
+            'jumlah_pengurus' => 'nullable|integer',
+            'jumlah_kelas'    => 'nullable|integer',
         ]);
 
         $profil = PengaturanAsrama::first();
@@ -37,6 +41,13 @@ class ProfilAsramaController extends Controller
         $profil->sejarah_singkat = $request->sejarah_singkat;
         $profil->visi = $request->visi;
         $profil->misi = $request->misi;
+        
+        // TAMBAHKAN BARIS INI AGAR DATA STATISTIK IKUT TERSIMPAN:
+        $profil->jumlah_santri   = $request->jumlah_santri;
+        $profil->jumlah_kamar    = $request->jumlah_kamar;
+        $profil->jumlah_pengurus = $request->jumlah_pengurus;
+        $profil->jumlah_kelas    = $request->jumlah_kelas;
+
         $profil->save();
 
         return redirect()->route('admin.profil.edit')->with('success', 'Profil Asrama Diniyah berhasil diperbarui!');

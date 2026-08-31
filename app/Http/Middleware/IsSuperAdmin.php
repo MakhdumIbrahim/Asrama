@@ -2,16 +2,20 @@
 
 namespace App\Http\Middleware;
 
-Class IsSuperAdmin
+use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+class IsSuperAdmin
 {
-    Public function handle($request, \Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
         // Jika user sudah login dan memiliki role 'super_admin', izinkan lewat
         if (auth()->check() && auth()->user()->role === 'super_admin') {
-            Return $next($request);
+            return $next($request);
         }
 
-        // Jika bukan super_admin, tendang kembali ke dashboard dengan pesan peringatan
-        Return redirect('/dashboard')->with('error', 'Akses Ditolak! Halaman tersebut hanya untuk Super Admin.');
+        // Jika sekretaris mencoba masuk ke URL super admin, tendang ke dashboard
+        return redirect('/dashboard')->with('error', 'Akses Ditolak! Halaman tersebut hanya bisa diakses oleh Super Admin.');
     }
 }
