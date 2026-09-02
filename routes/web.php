@@ -18,6 +18,9 @@ use App\Models\Berita;
 // ==========================================
 Route::get('/', [FrontController::class, 'index'])->name('home');
 Route::get('/berita/{id}', [FrontController::class, 'showBerita'])->name('berita.show');
+Route::get('/up', function () {
+    return response('OK', 200);
+});
 
 // ==========================================
 // RUTE TERAUTENTIKASI (Hanya yang sudah Login)
@@ -92,10 +95,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
             // 4. KELOLA AKUN USER (Baru)
             Route::resource('users', UserController::class)->names('admin.users');
-
-            Route::get('/up', function () {
-            return response('OK', 200);
-            });
         });
     });
 });
