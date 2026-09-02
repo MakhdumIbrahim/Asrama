@@ -29,12 +29,21 @@ ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/conf-available/*.conf
 
+# AGAR RENDER MENDETEKSI PORT DENGAN BENAR:
+# Mengubah port default Apache ke port 80 secara global dan mengizinkan binding ke 0.0.0.0
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+RUN sed -i 's/Listen 80/Listen 0.0.0.0:80/g' /etc/apache2/ports.conf
+RUN sed -i 's/:80/:80/g' /etc/apache2/sites-available/000-default.conf
+
 RUN a2enmod rewrite
 
 # Menghapus file cache bawaan dari lokal agar Laravel menggunakan Environment Render
 RUN rm -f bootstrap/cache/*.php
 
-# Meneruskan log Laravel ke terminal Render agar pesan error 500 terlihat
+# Meneruskan log Laravel ke terminal Render agar pesan error terlihat
 RUN ln -sf /dev/stdout /var/www/html/storage/logs/laravel.log
 
 EXPOSE 80
+
+# Perintah otomatis agar Apache berjalan di foreground dengan port yang benar
+CMD ["apache2-foreground"]
