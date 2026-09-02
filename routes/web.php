@@ -92,6 +92,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
             // 4. KELOLA AKUN USER (Baru)
             Route::resource('users', UserController::class)->names('admin.users');
+
+            Route::get('/up', function () {
+            return response('OK', 200);
+            });
         });
     });
 });

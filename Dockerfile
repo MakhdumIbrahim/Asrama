@@ -31,4 +31,10 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/conf-ava
 
 RUN a2enmod rewrite
 
+# Menghapus file cache bawaan dari lokal agar Laravel menggunakan Environment Render
+RUN rm -f bootstrap/cache/*.php
+
+# Meneruskan log Laravel ke terminal Render agar pesan error 500 terlihat
+RUN ln -sf /dev/stdout /var/www/html/storage/logs/laravel.log
+
 EXPOSE 80
