@@ -46,4 +46,4 @@ RUN ln -sf /dev/stdout /var/www/html/storage/logs/laravel.log
 EXPOSE 80
 
 # Perintah otomatis agar Apache berjalan di foreground dengan port yang benar
-CMD /bin/bash -c "sed -i \"s/80/\${PORT:-80}/g\" /etc/apache2/ports.conf /etc/apache2/sites-available/000-default.conf && apache2-foreground"
+CMD /bin/bash -c "sed -i \"s/Listen 80/Listen 0.0.0.0:\${PORT:-80}/g\" /etc/apache2/ports.conf && sed -i \"s/:80/:\${PORT:-80}/g\" /etc/apache2/sites-available/000-default.conf && apache2-foreground"
