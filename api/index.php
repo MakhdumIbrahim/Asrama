@@ -32,9 +32,7 @@ try {
     $app = require_once __DIR__ . '/../bootstrap/app.php';
     $app->useStoragePath('/tmp/storage');
 
-    $request = Request::capture();
-    $response = $app->handle($request);
-    $response->send();
+    $app->handleRequest(Request::capture());
 } catch (\Throwable $e) {
     // Tangkap error PHP asli agar tidak tertutup layar 500 Vercel
     http_response_code(500);
