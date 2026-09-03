@@ -1,4 +1,9 @@
 node_modules
+package-lock.json
+storage/app/public
+storage/framework
+storage/logs
+public/storage
 .git
 .github
 tests
