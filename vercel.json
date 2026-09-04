@@ -7,6 +7,16 @@
   },
   "routes": [
     {
+      "src": "/build/assets/(.+)\\.css",
+      "dest": "/build/assets/$1.css",
+      "headers": { "Content-Type": "text/css; charset=utf-8" }
+    },
+    {
+      "src": "/build/assets/(.+)\\.js",
+      "dest": "/build/assets/$1.js",
+      "headers": { "Content-Type": "application/javascript; charset=utf-8" }
+    },
+    {
       "src": "/build/(.*)",
       "dest": "/build/$1"
     },
