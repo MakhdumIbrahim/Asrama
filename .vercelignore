@@ -1,3 +1,4 @@
+storage/app/public
 storage/framework
 storage/logs
 .git
